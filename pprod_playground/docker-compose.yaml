@@ -68,6 +68,23 @@ services:
       REACT_APP_KEYCLOAK_REALM: reports-realm
       REACT_APP_KEYCLOAK_CLIENT_ID: reports-frontend
 
+  app-report:
+    build:
+      context: ./app-report
+      dockerfile: Dockerfile
+    container_name: app-report
+    environment:
+#      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://keycloak:8080/realms/reports-realm
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://keycloak:8080/realms/reports-realm/protocol/openid-connect/certs
+      - SPRING_DATASOURCE_URL=jdbc:clickhouse://olap_db:8123/default
+      - SPRING_DATASOURCE_USERNAME=default
+      - SPRING_DATASOURCE_PASSWORD=default123
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.clickhouse.jdbc.DriverV1
+      - JAVA_TOOL_OPTIONS=-Dclickhouse.jdbc.v1=true
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
 #  openldap:
 #    image: osixia/openldap:1.5.0
 #    container_name: openldap
