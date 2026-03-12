@@ -46,7 +46,7 @@ services:
       KC_DB_URL: jdbc:postgresql://keycloak_db:5432/keycloak_db
       KC_DB_USERNAME: keycloak_user
       KC_DB_PASSWORD: keycloak_password
-    command: 
+    command:
       - start-dev
       - --import-realm
     volumes:
@@ -76,7 +76,7 @@ services:
     environment:
 #      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://keycloak:8080/realms/reports-realm
       - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://keycloak:8080/realms/reports-realm/protocol/openid-connect/certs
-      - SPRING_DATASOURCE_URL=jdbc:clickhouse://olap_db:8123/default
+      - SPRING_DATASOURCE_URL=jdbc:clickhouse://olap-db:8123/default
       - SPRING_DATASOURCE_USERNAME=default
       - SPRING_DATASOURCE_PASSWORD=default123
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.clickhouse.jdbc.DriverV1
@@ -126,6 +126,11 @@ services:
       interval: 1s
       timeout: 3s
       retries: 30
+    networks:
+      default:
+        aliases:
+          - olap_db
+          - olap-db
 
 #  minio:
 #    image: minio/minio

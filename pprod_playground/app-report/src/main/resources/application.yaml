@@ -10,14 +10,8 @@ spring:
           jwk-set-uri: http://localhost:8080/realms/reports-realm/protocol/openid-connect/certs
   application:
     name: app-report
-#  datasource:
-#    url: jdbc:postgresql://postgres:5432/dwh
-#    username: airflow
-#    password: airflow
-#    driver-class-name: org.postgresql.Driver
   datasource:
-#    url: jdbc:clickhouse:http://localhost:8123
-    url: jdbc:clickhouse://olap_db:8123
+    url: jdbc:clickhouse:http://localhost:8123
     username: default
     password: default123
     driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
