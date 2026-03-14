@@ -116,7 +116,28 @@
         "publicClient": true,
         "redirectUris": ["http://localhost:3000/*"],
         "webOrigins": ["http://localhost:3000"],
-        "directAccessGrantsEnabled": true
+        "directAccessGrantsEnabled": true,
+        "protocol": "openid-connect",
+        "attributes": {
+          "pkce.code.challenge.method": "S256"
+        },
+        "protocolMappers": [
+          {
+            "name": "crm_user_id",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-attribute-mapper",
+            "consentRequired": false,
+            "config": {
+              "user.attribute": "crm_user_id",
+              "claim.name": "crm_user_id",
+              "jsonType.label": "String",
+              "id.token.claim": "true",
+              "access.token.claim": "true",
+              "userinfo.token.claim": "true",
+              "multivalued": "false"
+            }
+          }
+        ]
       },
       {
         "clientId": "reports-api",

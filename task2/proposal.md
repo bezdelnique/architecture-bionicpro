@@ -4,6 +4,28 @@
 
 
 # Задача 2. Разработать Airflow DAG и настроить его на запуск по расписанию.
+
+## How to run
+Запуск контейнеров
+```
+docker compose up -d
+```
+
+- Установка пароля clickhouse
+- Создание коннектов airflow
+- Импорт пользователей из crm в keycloak
+```
+bash post-docker-run.sh
+```
+
+Зайти в airflow admin/admin и включить DAG crm_to_olap_incremental_csv 
+http://localhost:8282/home
+
+
+После этого можно зайти на фронтент под пользователем cprothetic1/cprothetic1 и скачать отчет
+http://localhost:3000
+
+
 ## Реализуйте ETL
 
 - Airflow раз в 15 минут перегоняет данные из Postgresql в ClickHouse

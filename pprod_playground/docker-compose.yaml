@@ -79,8 +79,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:clickhouse://olap-db:8123/default
       - SPRING_DATASOURCE_USERNAME=default
       - SPRING_DATASOURCE_PASSWORD=default123
-      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.clickhouse.jdbc.DriverV1
-      - JAVA_TOOL_OPTIONS=-Dclickhouse.jdbc.v1=true
     ports:
       - "8000:8000"
     restart: unless-stopped
@@ -115,7 +113,7 @@ services:
     image: clickhouse/clickhouse-server:latest
     ports:
       - "8123:8123"
-      - "9000:9000"
+#      - "9000:9000"
     volumes:
       - clickhouse-data:/var/lib/clickhouse
       - ./olap-db:/docker-entrypoint-initdb.d

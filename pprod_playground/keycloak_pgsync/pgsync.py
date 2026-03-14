@@ -111,7 +111,7 @@ def main():
     )
 
     with conn, conn.cursor() as cur:
-        cur.execute("SELECT id, name, email FROM public.customers ORDER BY id")
+        cur.execute("SELECT id, name, email FROM public.customers ORDER BY id LIMIT 10")
         for row in cur.fetchall():
             create_user(headers, row)
 
